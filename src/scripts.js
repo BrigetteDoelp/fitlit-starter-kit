@@ -53,7 +53,7 @@ function displayActivityData() {
   const stairsWeekData = document.querySelector('.stairs-week-data');
   const stepsComparisonData = document.querySelector('.steps-comparison-data');
   const minutesComparisonData = document.querySelector('.minutes-comparison-data');
-  const stairsComparisonData = document.querySelector('.stairsComparisonData');
+  const stairsComparisonData = document.querySelector('.stairs-comparison-data');
 
   const weekActive = activityRepo.getWeekOfData(user, '2019/09/21')
 
@@ -73,6 +73,10 @@ function displayActivityData() {
   weekActive.forEach(entry => {
     stairsWeekData.innerText += ` ${entry.date}: ${entry.flightsOfStairs} `
   })
+
+  stepsComparisonData.innerText = `Average Steps Taken ${activityRepo.calculateAllUsersAverage('2019/09/21', 'numSteps')}`
+  minutesComparisonData.innerText = `Average Minutes Active: ${activityRepo.calculateAllUsersAverage('2019/09/21', 'minutesActive')}`
+  stairsComparisonData.innerText = `Average Stairs Climbed: ${activityRepo.calculateAllUsersAverage('2019/09/21', 'numSteps')}`
 }
 
 function displaySleepData() {
