@@ -18,15 +18,6 @@ class HydrationRepo {
     return singleDayHydration.numOunces
   }
 
-  findWeeklyHydration(userID, endDate) {
-    const entries = this.findDataByID(userID)
-    const endingIndex = entries.map(singleEntry => {
-      return singleEntry.date
-    }).indexOf(endDate);
-    const startingIndex = endingIndex - 5
-    return entries.slice(startingIndex - 1, endingIndex + 1)
-  }
-
   findAvgDailyHydration(userID) {
     const entries = this.findDataByID(userID)
     const totalOz = entries.reduce((total, data) => {
@@ -36,6 +27,15 @@ class HydrationRepo {
     return totalOz / entries.length
   }
 
+  findWeeklyHydration(userID, endDate) {
+    const entries = this.findDataByID(userID)
+    const endingIndex = entries.map(singleEntry => {
+      return singleEntry.date
+    }).indexOf(endDate);
+    const startingIndex = endingIndex - 5
+    return entries.slice(startingIndex - 1, endingIndex + 1)
+  }
+
   getEntriesForDate(date) {
     return this.hydroData.filter(entry => entry.date === date)
   }
@@ -43,9 +43,7 @@ class HydrationRepo {
   getMostHydratedUser(date, data) {
     const entries = this.getEntriesForDate(date)
     const sortedHydraters = entries.sort((entryA, entryB) => entryB.numOunces - entryA.numOunces)
-    const mostHydratedUser = sortedHydraters[0]
-    const userInfo = data.find(user => user.id === mostHydratedUser.userID)
-    console.log(mostHydratedUser, data)
+    const userInfo = data.find(user => user.id === sortedHydraters[0].userID)
     return userInfo.name
   }
 }
