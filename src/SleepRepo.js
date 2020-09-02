@@ -35,6 +35,17 @@ class SleepRepo {
     return parseFloat((totalSleep / entries.length).toFixed(1))
   }
 
+  findAvgTotalSleepQuality(userID) {
+    const entries = this.findDataByID(userID);
+    const totalSleepQuality = entries.reduce((total, data) => {
+      total += data.sleepQuality
+      return total
+    }, 0)
+    const initialResult =  totalSleepQuality / entries.length
+    const roundedResult = Math.round((initialResult + Number.EPSILON) * 100) / 100
+    return roundedResult
+  }
+
   avgSleepQualityForAll() {
     const totalSleepQuality = this.sleepData.reduce((total, data) => {
       total += data.sleepQuality
@@ -86,17 +97,6 @@ class SleepRepo {
       individualUserQuality.push(this.weeklyIndividualSleepQualityAvg(user, endDate))
     })
     return individualUserQuality
-  }
-
-  findAvgTotalSleepQuality(userID) {
-    const entries = this.findDataByID(userID);
-    const totalSleepQuality = entries.reduce((total, data) => {
-      total += data.sleepQuality
-      return total
-    }, 0)
-    const initialResult =  totalSleepQuality / entries.length
-    const roundedResult = Math.round((initialResult + Number.EPSILON) * 100) / 100
-    return roundedResult
   }
 
   topSleepQuality(endDate) {
