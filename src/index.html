@@ -5,19 +5,14 @@
     <link rel="stylesheet" href="styles.css">
     <link href='https://fonts.googleapis.com/css?family=Shrikhand' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-    <title>Activity Tracker</title>
+    <link href='https://fonts.googleapis.com/css?family=Fugaz+One' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=MuseoModerno' rel='stylesheet'>
+    <title>Cativity Tracker</title>
   </head>
   <body>
     <header class="header-area">
-      <section>
-        <h3>date</h3>
-      </section>
-      <section class="header-text">
-        <h1>Activity Tracker</h1>
-        <h2 class="greeting"></h2>
-      </section>
       <section class="dropdown">
-        <button class="dropbtn"></button>
+        <button class="dropbtn"><img class="buttimg" src="images/icons8-cat-profile-80.png"></button>
         <section class="dropdown-content">
           <p class="user-name"></p>
           <p class="user-address"></p>
@@ -25,24 +20,31 @@
           <p class="user-friends"></p>
         </section>
       </section>
+      <section class="header-text">
+        <h1>Cat-tivity Tracker</h1>
+        <h2 class="greeting"></h2>
+      </section>
+      <section>
+        <h3 class="date">9.22.2019</h3>
+      </section>
+
     </header>
 
 
 
     <main>
       <aside class="sidebar">
-        <h2>Leaderboard</h2>
-        <h4 class="most-steps category">Most Steps Taken</h4>
-        <h4 class="most-drank category">Most Water Drank</h4>
-        <h4 class="best-sleep category">Best Sleep</h4>
+          <h2>Leaderboard</h2>
+          <h4 class="most-steps category">Most Steps Taken</h4>
+          <h4 class="most-drank category">Most Water Drank</h4>
+          <h4 class="best-sleep category">Best Sleep</h4>
         <section class="activity-comparison">
           <p class="steps-comparison-data"></p>
           <p class="minutes-comparison-data"></p>
           <p class="stairs-comparison-data"></p>
         </section>
+        <img class="cat catimg"src="images/cat 2.png" alt="">
       </aside>
-
-
 
 
       <section class="user-card">
@@ -61,12 +63,14 @@
           <h4 class="daily-data-title">Your Day At A Glance</h4>
           <section class="data-widgets">
             <section class="today hydration">
-              <p class="hydration-today-data"></p>
+              <p class="hydration-today-data center"></p>
             </section>
+            <img class="cat" src="images/cat 3.png" alt="">
             <section class="today sleep">
               <p class="hours-today-data"></p>
               <p class="quality-today-data"></p>
             </section>
+            <img class="cat" src="images/cat 4.png" alt="">
             <section class="today activity">
               <p class="steps-today-data"></p>
               <p class="minutes-today-data"></p>
@@ -75,7 +79,7 @@
           </section>
         </section>
 
-
+        <div class="divider"></div>
 
         <section class="weekly-stats">
           <section class="date-display week">
