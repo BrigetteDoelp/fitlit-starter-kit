@@ -6,20 +6,8 @@ class SleepRepo {
   findDataByID(userID) {
     const entries = this.sleepData.filter(userEntry => {
       return userID === userEntry.userID
-    });
-    return entries
-  }
-
-  groupUsers() {
-    let adjustedData = {};
-    this.sleepData.forEach(user => {
-      if (adjustedData[user.userID]) {
-        adjustedData[user.userID].push(user.sleepQuality)
-      } else {
-        adjustedData[user.userID] = [user.sleepQuality];
-      }
     })
-    return adjustedData
+    return entries
   }
 
   findNightlySleep(userID, date) {
