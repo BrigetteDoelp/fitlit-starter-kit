@@ -5,7 +5,7 @@ const sleepData = require('./testdata/sleep-test-data');
 const userData = require('./testdata/user-test-data');
 
 const SleepRepo = require('../src/SleepRepo');
-const User = require('../src/User');
+
 describe('Sleep', () => {
   let sleepRepo;
   beforeEach(() => {
@@ -33,7 +33,6 @@ describe('Sleep', () => {
   });
 
   it('should return a full week\'s worth of sleep hours from starting date onwards', () => {
-    console.log(sleepRepo.findWeekOfSleep(1, '2019/06/23'))
     expect(sleepRepo.findWeekOfSleep(1, '2019/06/23')).to.deep.equal([sleepData[2], sleepData[3], sleepData[4], sleepData[6], sleepData[7], sleepData[8], sleepData[9]]);
   });
 

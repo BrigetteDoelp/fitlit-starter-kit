@@ -4,7 +4,6 @@ const expect = chai.expect;
 // import UserRepo from '../src/UserRepo';
 const UserRepo = require('../src/UserRepo');
 const userData = require('./testdata/user-test-data');
-const activityData = require('./testdata/activity-test-data');
 
 describe('UserRepo', () => {
   let userRepo;

@@ -141,7 +141,7 @@ class SleepRepo {
     return restedPeopleNames
   }
 
-  restedPeople(date, userData) {
+  restedPeople(date) {
     const sleepByDate = this.findDailySleepForAll(date);
     sleepByDate.sort((entryA, entryB) => {
       return entryB.hoursSlept - entryA.hoursSlept
@@ -170,7 +170,7 @@ class SleepRepo {
     return tiredPeopleNames
   }
 
-  tiredPeople(date, userData) {
+  tiredPeople(date) {
     const sleepByDate = this.findDailySleepForAll(date);
     sleepByDate.sort((entryA, entryB) => {
       return entryA.hoursSlept - entryB.hoursSlept
@@ -189,14 +189,7 @@ class SleepRepo {
     const bestSleeperName = userData.find(user => user.id === bestSleeper.userID)
     return bestSleeperName.name
   }
-
-};
-
-
-
-
-
-
+}
 
 if (typeof module !== 'undefined') {
   module.exports = SleepRepo;
