@@ -6,17 +6,40 @@ const hydrationRepo = new HydrationRepo(hydrationData)
 const activityRepo = new ActivityRepo(activityData)
 const sleepRepo = new SleepRepo(sleepData)
 
-// const activityButtons = document.querySelectorAll('.activity-button')
+const activityButtons = document.querySelectorAll('.activity-button')
+const stepsWeekData = document.querySelector('.steps-week-data');
+const minutesWeekData = document.querySelector('.minutes-week-data');
+const stairsWeekData = document.querySelector('.stairs-week-data');
 
 window.addEventListener('load', updateDisplay);
-activityButtons.addEventListener('click', toggleActivityStats)
+activityButtons.forEach(button => button.addEventListener('click', toggleActivityStats))
+//set up event listeners on pageload - qSA returns array of elements - need to loop
 
-// function toggleActivityStats(event) {
-//   // if (event.target.id === 'steps-button') {
-//   //   console.log('hi')
-//   // }
-//   console.log(event.target)
-// }
+function toggleActivityStats(event) {
+  switch (event.target.id) {
+    case 'steps-button':
+      stepsWeekData.classList.remove('hidden')
+      minutesWeekData.classList.add('hidden')
+      stairsWeekData.classList.add('hidden')
+      console.log('a')
+      break
+    case 'minutes-button':
+      stepsWeekData.classList.add('hidden')
+      minutesWeekData.classList.remove('hidden')
+      stairsWeekData.classList.add('hidden')
+      console.log('b')
+      break
+    case 'stairs-button':
+      stepsWeekData.classList.add('hidden')
+      minutesWeekData.classList.add('hidden')
+      stairsWeekData.classList.remove('hidden')
+      console.log('c')
+      break
+  }
+}
+
+//spike - exploratory dvlpmt process
+// spike branch to see where it goes
 
 function displayUserData() {
   const friendList = user.friends.map(friend => {
@@ -58,9 +81,6 @@ function displayActivityData() {
   const stepsTodayData = document.querySelector('.steps-today-data');
   const minutesTodayData = document.querySelector('.minutes-today-data');
   const milesTodayData = document.querySelector('.miles-today-data');
-  const stepsWeekData = document.querySelector('.steps-week-data');
-  const minutesWeekData = document.querySelector('.minutes-week-data');
-  const stairsWeekData = document.querySelector('.stairs-week-data');
   const stepsComparisonData = document.querySelector('.steps-comparison-data');
   const minutesComparisonData = document.querySelector('.minutes-comparison-data');
   const stairsComparisonData = document.querySelector('.stairs-comparison-data');
