@@ -91,12 +91,13 @@ function displayUserData() {
 function displayHydrationData() {
   const hydrationTodayData = document.querySelector('.hydration-today-data');
   const hydrationWeekData = document.querySelector('.hydration-week-data');
-
+  const dateDisplay = document.querySelector('.date-display');
   const weeklyData = hydrationRepo.findWeeklyHydration(user.id, '2019/09/21')
 
   hydrationTodayData.innerText = `Ounces Drank Today: ${hydrationRepo.findDailyHydration(user.id, '2019/09/21')}`;
   weeklyData.forEach((data) => {
-    hydrationWeekData.innerText += ` ${data.date}: ${data.numOunces} ounces `
+    hydrationWeekData.innerHTML += `<p>${data.numOunces} ounces</p>`
+    dateDisplay.innerHTML += `<p>${data.date}</p>`
   })
 }
 
