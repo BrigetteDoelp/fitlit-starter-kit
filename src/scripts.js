@@ -1,5 +1,3 @@
-console.log("Hello World");
-
 const user = new User(userData[33])
 const userRepo = new UserRepo(userData)
 const hydrationRepo = new HydrationRepo(hydrationData)
@@ -11,9 +9,37 @@ const stepsWeekData = document.querySelector('.steps-week-data');
 const minutesWeekData = document.querySelector('.minutes-week-data');
 const stairsWeekData = document.querySelector('.stairs-week-data');
 
+const sleepButtons = document.querySelectorAll('.sleep-button');
+const hoursWeekData = document.querySelector('.hours-week-data');
+const qualityWeekData = document.querySelector('.quality-week-data');
+const allTimeSleepData = document.querySelector('.all-time-sleep-data');
+
 window.addEventListener('load', updateDisplay);
 activityButtons.forEach(button => button.addEventListener('click', toggleActivityStats))
-//set up event listeners on pageload - qSA returns array of elements - need to loop
+sleepButtons.forEach(button => button.addEventListener('click', toggleSleepStats))
+
+function toggleSleepStats(event) {
+  switch (event.target.id) {
+    case 'hours-button':
+      hoursWeekData.classList.remove('hidden')
+      qualityWeekData.classList.add('hidden')
+      allTimeSleepData.classList.add('hidden')
+      console.log('a')
+      break
+    case 'quality-button':
+      hoursWeekData.classList.add('hidden')
+      qualityWeekData.classList.remove('hidden')
+      allTimeSleepData.classList.add('hidden')
+      console.log('b')
+      break
+    case 'average-button':
+      hoursWeekData.classList.add('hidden')
+      qualityWeekData.classList.add('hidden')
+      allTimeSleepData.classList.remove('hidden')
+      console.log(event.target)
+      break
+  }
+}
 
 function toggleActivityStats(event) {
   switch (event.target.id) {
@@ -21,19 +47,16 @@ function toggleActivityStats(event) {
       stepsWeekData.classList.remove('hidden')
       minutesWeekData.classList.add('hidden')
       stairsWeekData.classList.add('hidden')
-      console.log('a')
       break
     case 'minutes-button':
       stepsWeekData.classList.add('hidden')
       minutesWeekData.classList.remove('hidden')
       stairsWeekData.classList.add('hidden')
-      console.log('b')
       break
     case 'stairs-button':
       stepsWeekData.classList.add('hidden')
       minutesWeekData.classList.add('hidden')
       stairsWeekData.classList.remove('hidden')
-      console.log('c')
       break
   }
 }
@@ -112,23 +135,18 @@ function displayActivityData() {
 function displaySleepData() {
   const hoursTodayData = document.querySelector('.hours-today-data');
   const qualityTodayData = document.querySelector('.quality-today-data');
-  const hoursWeekData = document.querySelector('.hours-week-data');
-  const qualityWeekData = document.querySelector('.quality-week-data');
-  const hoursAllTimeData = document.querySelector('.hours-all-time-data');
-  const qualityAllTimeData = document.querySelector('.quality-all-time-data');
-
   const hoursSleptWeekly = sleepRepo.findWeekOfSleep(user.id, '2019/09/21');
 
   hoursTodayData.innerText = `Hours Slept Today: ${sleepRepo.findNightlyHoursSlept(user.id, '2019/09/21')}`;
   qualityTodayData.innerText = `Sleep Quality Today: ${sleepRepo.findNightlySleepQuality(user.id, '2019/09/21')}`;
   hoursSleptWeekly.forEach(night => {
-    hoursWeekData.innerText += ` ${night.date}: ${night.hoursSlept}`
+    hoursWeekData.innerText += ` ${night.hoursSlept}`
   })
   hoursSleptWeekly.forEach(night => {
-    qualityWeekData.innerText += ` ${night.date}: ${night.sleepQuality}`
+    qualityWeekData.innerText += ` ${night.sleepQuality} `
   })
-  hoursAllTimeData.innerText += `Average Hours Slept: ${sleepRepo.calculateAvgHrsSlept(user.id)}`;
-  qualityAllTimeData.innerText += `Average Sleep Quality: ${sleepRepo.findAvgTotalSleepQuality(user.id)}`
+  allTimeSleepData.innerText += `Average Hours Slept: ${sleepRepo.calculateAvgHrsSlept(user.id)}`;
+  allTimeSleepData.innerText += `Average Sleep Quality: ${sleepRepo.findAvgTotalSleepQuality(user.id)}`
 }
 
 function updateDisplay() {
