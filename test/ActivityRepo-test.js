@@ -35,16 +35,16 @@ describe('ActivityRepo', () => {
   });
 
   it('should find a user\'s data for a given week', () => {
-    expect(activityRepo.getWeekOfData(dannie, '2019/08/14')).to.deep.equal([activityData[0], activityData[1], activityData[2], activityData[3], activityData[4], activityData[5], activityData[6]])
-  })
+    expect(activityRepo.getWeekOfData(dannie, '2019/08/14')).to.deep.equal([activityData[0], activityData[1], activityData[2], activityData[3], activityData[4], activityData[5], activityData[6]]);
+  });
 
   it('should return the average minutes a day a user was active for a given week', () => {
     expect(activityRepo.calculateAvgMinutesForWeek(dannie, '2019/08/14')).to.equal(168);
   });
 
   it('should determine if a user reached their step goal for a given date', () => {
-    expect(activityRepo.findIfStepGoalMet(dannie, '2019/08/10')).to.be.false
-    expect(activityRepo.findIfStepGoalMet(dannie, '2019/08/13')).to.be.true
+    expect(activityRepo.findIfStepGoalMet(dannie, '2019/08/10')).to.be.false;
+    expect(activityRepo.findIfStepGoalMet(dannie, '2019/08/13')).to.be.true;
   });
 
   it('should return all dates a user exceeded their step goal', () => {
@@ -68,10 +68,10 @@ describe('ActivityRepo', () => {
   });
 
   it('should find names of users who met all users average step goal on a given date', () => {
-    expect(activityRepo.getUsersWhoMetStepGoal('2019/08/08', 'numSteps', userData)).to.deep.equal(['Dan Hodkiewicz', 'Wilburn Collins', 'Alexandrea Wehner', 'Maria Kemmer', 'Kristin Cruickshank', 'Greta Corkery'])
+    expect(activityRepo.getUsersWhoMetStepGoal('2019/08/08', 'numSteps', userData)).to.deep.equal(['Dan Hodkiewicz', 'Wilburn Collins', 'Alexandrea Wehner', 'Maria Kemmer', 'Kristin Cruickshank', 'Greta Corkery']);
   });
 
   it('should find the name of user who had the highest steps on a given date', () => {
-    expect(activityRepo.getUserWithMostSteps('2019/08/08', userData)).to.equal('Dan Hodkiewicz')
+    expect(activityRepo.getUserWithMostSteps('2019/08/08', userData)).to.equal('Dan Hodkiewicz');
   });
 });

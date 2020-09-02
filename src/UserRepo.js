@@ -15,7 +15,7 @@ class UserRepo {
     const averageStepGoal = Math.round(totalOfStepGoals / this.users.length)
     return averageStepGoal
   }
-};
+}
 
 
 
