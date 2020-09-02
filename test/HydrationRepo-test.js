@@ -35,4 +35,4 @@ describe('HydrationRepo', () => {
     expect(hydrationRepo.getMostHydratedUser('2019/06/15', userData)).to.equal('Vincenzo Hayes')
   });
 
-})
+});

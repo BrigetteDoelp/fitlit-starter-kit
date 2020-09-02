@@ -85,8 +85,8 @@ class SleepRepo {
     const initialResult =  totalSleepQuality / weekOfSleep.length
     const roundedResult = Math.round((initialResult + Number.EPSILON) * 100) / 100
     return {
-        userID: userID,
-        qualityAvg: roundedResult,
+      userID: userID,
+      qualityAvg: roundedResult,
     };
   }
 
