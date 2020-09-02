@@ -95,13 +95,13 @@ function displayActivityData() {
   stepsWeekData.innerText += 'Steps Taken This Week'
   stairsWeekData.innerText += 'Flights of Stairs Climbed This Week'
   weekActive.forEach(entry => {
-    minutesWeekData.innerText += ` ${entry.date}: ${entry.minutesActive} `
+    minutesWeekData.innerText += ` ${entry.minutesActive} `
   })
   weekActive.forEach(entry => {
-    stepsWeekData.innerText += ` ${entry.date}: ${entry.numSteps} `
+    stepsWeekData.innerText += ` ${entry.numSteps} `
   })
   weekActive.forEach(entry => {
-    stairsWeekData.innerText += ` ${entry.date}: ${entry.flightsOfStairs} `
+    stairsWeekData.innerText += ` ${entry.flightsOfStairs} `
   })
 
   stepsComparisonData.innerText = `Average Steps Taken ${activityRepo.calculateAllUsersAverage('2019/09/21', 'numSteps')}`
