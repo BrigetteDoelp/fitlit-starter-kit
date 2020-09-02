@@ -21,11 +21,11 @@ describe('Sleep', () => {
   });
 
   it('should calculate average all time slept for a specific user', () => {
-    expect(sleepRepo.calculateAvgSleep(1)).to.equal(5);
+    expect(sleepRepo.calculateAvgHrsSlept(1)).to.equal(5);
   });
 
   it('should return nightly sleep by date', () => {
-    expect(sleepRepo.findNightlySleep(1, '2019/06/15')).to.equal(5);
+    expect(sleepRepo.findNightlyHoursSlept(1, '2019/06/15')).to.equal(5);
   });
 
   it('should return nightly sleep quality by date', () => {
@@ -37,7 +37,7 @@ describe('Sleep', () => {
   });
 
   it('should calculate average of sleep quality for all users', () => {
-    expect(sleepRepo.avgSleepQualityForAll(sleepData)).to.equal(2.8);
+    expect(sleepRepo.avgSleepQualityForAll()).to.equal(2.8);
   });
 
   it('should give back all users whose sleep quality avg is above 3', () => {

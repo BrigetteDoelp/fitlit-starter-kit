@@ -10,21 +10,12 @@ class SleepRepo {
     return entries
   }
 
-  findNightlySleep(userID, date) {
+  findNightlyHoursSlept(userID, date) {
     const entries = this.findDataByID(userID)
     const singleNightSleep = entries.find(userEntry => {
       return date === userEntry.date
     })
     return singleNightSleep.hoursSlept
-  }
-
-  calculateAvgSleep(userID) {
-    const entries = this.findDataByID(userID);
-    const totalSleep = entries.reduce((total, data) => {
-      total += data.hoursSlept
-      return total
-    }, 0)
-    return parseFloat((totalSleep / entries.length).toFixed(1))
   }
 
   findNightlySleepQuality(userID, date) {
@@ -33,6 +24,15 @@ class SleepRepo {
       return date === userEntry.date
     })
     return singleNightSleep.sleepQuality
+  }
+
+  calculateAvgHrsSlept(userID) {
+    const entries = this.findDataByID(userID);
+    const totalSleep = entries.reduce((total, data) => {
+      total += data.hoursSlept
+      return total
+    }, 0)
+    return parseFloat((totalSleep / entries.length).toFixed(1))
   }
 
   avgSleepQualityForAll() {
@@ -45,15 +45,6 @@ class SleepRepo {
     return roundedResult
   }
 
-  findWeeklyQualityForEveryUser(endDate) {
-    const allUsers = this.allUsers()
-    const individualUserQuality = [];
-    allUsers.forEach(user => {
-      individualUserQuality.push(this.weeklyIndividualSleepQualityAvg(user, endDate))
-    })
-    return individualUserQuality
-  }
-
   allUsers() {
     const everyUser = [];
     this.sleepData.forEach(user => {
@@ -62,6 +53,16 @@ class SleepRepo {
       }
     })
     return everyUser
+  }
+
+  findWeekOfSleep(userID, endDate) {
+    const entries = this.findDataByID(userID)
+    const endingIndex = entries.map(singleEntry => {
+      return singleEntry.date
+    }).indexOf(endDate);
+    const startingIndex = endingIndex - 5
+    const weekOfSleep = (entries.slice(startingIndex - 1, endingIndex + 1))
+    return weekOfSleep
   }
 
   weeklyIndividualSleepQualityAvg(userID, endDate) {
@@ -78,14 +79,13 @@ class SleepRepo {
     };
   }
 
-  findWeekOfSleep(userID, endDate) {
-    const entries = this.findDataByID(userID)
-    const endingIndex = entries.map(singleEntry => {
-      return singleEntry.date
-    }).indexOf(endDate);
-    const startingIndex = endingIndex - 5
-    const weekOfSleep = (entries.slice(startingIndex - 1, endingIndex + 1))
-    return weekOfSleep
+  findWeeklyQualityForEveryUser(endDate) {
+    const allUsers = this.allUsers()
+    const individualUserQuality = [];
+    allUsers.forEach(user => {
+      individualUserQuality.push(this.weeklyIndividualSleepQualityAvg(user, endDate))
+    })
+    return individualUserQuality
   }
 
   findAvgTotalSleepQuality(userID) {
@@ -118,15 +118,11 @@ class SleepRepo {
     return topSleeperNames
   }
 
-  namesOfMostRestedPeople(date, userData) {
-    const restedPeople = this.restedPeople(date, userData)
-    const restedPeopleNames = restedPeople.map(sleeper => {
-      const nameOfUser = userData.find(user => {
-        return sleeper.userID === user.id
-      })
-      return nameOfUser.name
+  findDailySleepForAll(date) {
+    const sleptDate = this.sleepData.filter(entry => {
+      return date === entry.date
     })
-    return restedPeopleNames
+    return sleptDate
   }
 
   restedPeople(date) {
@@ -140,22 +136,15 @@ class SleepRepo {
     return restedPeople
   }
 
-  findDailySleepForAll(date) {
-    const sleptDate = this.sleepData.filter(entry => {
-      return date === entry.date
-    })
-    return sleptDate
-  }
-
-  namesOfLeastRestedPeople(date, userData) {
-    const tiredPeople = this.tiredPeople(date, userData)
-    const tiredPeopleNames = tiredPeople.map(sleeper => {
+  namesOfMostRestedPeople(date, userData) {
+    const restedPeople = this.restedPeople(date, userData)
+    const restedPeopleNames = restedPeople.map(sleeper => {
       const nameOfUser = userData.find(user => {
         return sleeper.userID === user.id
       })
       return nameOfUser.name
     })
-    return tiredPeopleNames
+    return restedPeopleNames
   }
 
   tiredPeople(date) {
@@ -169,12 +158,21 @@ class SleepRepo {
     return sleepiestPeople
   }
 
-  //find user with best sleep quality for given date
+  namesOfLeastRestedPeople(date, userData) {
+    const tiredPeople = this.tiredPeople(date, userData)
+    const tiredPeopleNames = tiredPeople.map(sleeper => {
+      const nameOfUser = userData.find(user => {
+        return sleeper.userID === user.id
+      })
+      return nameOfUser.name
+    })
+    return tiredPeopleNames
+  }
+
   getBestSleptUser(date, userData) {
     const entries = this.findDailySleepForAll(date)
     const sortedSleepers = entries.sort((entryA, entryB) => entryB.sleepQuality - entryA.sleepQuality)
-    const bestSleeper = sortedSleepers[0]
-    const bestSleeperName = userData.find(user => user.id === bestSleeper.userID)
+    const bestSleeperName = userData.find(user => user.id === sortedSleepers[0].userID)
     return bestSleeperName.name
   }
 }
