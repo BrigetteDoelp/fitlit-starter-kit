@@ -6,7 +6,17 @@ const hydrationRepo = new HydrationRepo(hydrationData)
 const activityRepo = new ActivityRepo(activityData)
 const sleepRepo = new SleepRepo(sleepData)
 
+// const activityButtons = document.querySelectorAll('.activity-button')
+
 window.addEventListener('load', updateDisplay);
+activityButtons.addEventListener('click', toggleActivityStats)
+
+// function toggleActivityStats(event) {
+//   // if (event.target.id === 'steps-button') {
+//   //   console.log('hi')
+//   // }
+//   console.log(event.target)
+// }
 
 function displayUserData() {
   const friendList = user.friends.map(friend => {
