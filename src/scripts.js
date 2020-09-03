@@ -115,17 +115,14 @@ function displayActivityData() {
   minutesTodayData.innerText += `Minutes Today: ${activityRepo.findMinutesActive(user, '2019/09/21')}`
   milesTodayData.innerText += `Miles Today: ${activityRepo.calculateMilesWalked(user, '2019/09/21')}`
 
-  minutesWeekData.innerText += 'Minutes Active This Week'
-  stepsWeekData.innerText += 'Steps Taken This Week'
-  stairsWeekData.innerText += 'Flights of Stairs Climbed This Week'
   weekActive.forEach(entry => {
-    minutesWeekData.innerText += ` ${entry.minutesActive} `
+    minutesWeekData.innerHTML += `<p>${entry.minutesActive}</p>`
   })
   weekActive.forEach(entry => {
-    stepsWeekData.innerText += ` ${entry.numSteps} `
+    stepsWeekData.innerHTML += `<p>${entry.numSteps}</p> `
   })
   weekActive.forEach(entry => {
-    stairsWeekData.innerText += ` ${entry.flightsOfStairs} `
+    stairsWeekData.innerHTML += `<p>${entry.flightsOfStairs}</p>`
   })
 
   stepsComparisonData.innerText = `Average Steps Taken ${activityRepo.calculateAllUsersAverage('2019/09/21', 'numSteps')}`
