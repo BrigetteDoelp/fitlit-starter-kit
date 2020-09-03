@@ -1,9 +1,8 @@
 # Cat-tivity Tracker
 
 **Cat-tivity Tracker** is the purrrfect app to keep track of your health habits. It tracks daily, weekly, and all-time stats for how hydrated, active, and well-rested users are. It is designed in vanilla JavaScript using principles of Test Driven Development.
-//screenshot of full page
-//gif of button functionality
-![Cat-tivity app functionality - toggling through weekly views](giphy link)
+
+![Cat-tivity app main view](https://i.imgur.com/2JMHSRR.png)
 
 ## Setup & Installation
 
@@ -34,9 +33,10 @@ Our thinking was that different users can be instantiated depending whose info y
 Each repository class is instantiated with a single dataset to perform most calculations. This reduces occurences of coupling as much as possible without creating one super class. For a few calculations in `SleepRepo`, `ActivityRepo` and `HydrationRepo` that compare data for multiple users, an array of users is taken in as an argument.
 
 ## Contributors
-👤 **Brigette Doelp**
+
+1. 👤 **Brigette Doelp**
 - GitHub: [BrigetteDoelp](https://github.com/brigettedoelp)
-👤 **Hanna Kim**
+1. 👤 **Hanna Kim**
 - GitHub: [hannakim91](https://github.com/hannakim91)
 
 ## Additional Links
