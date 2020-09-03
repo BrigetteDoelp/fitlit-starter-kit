@@ -2,7 +2,7 @@ class ActivityRepo {
   constructor(data) {
     this.activityData = data
   }
-  
+
   getActivityEntry(user, date) {
     return this.activityData.find(entry => entry.date === date && entry.userID === user.id)
   }
@@ -16,14 +16,6 @@ class ActivityRepo {
   getEntriesForDate(date) {
     return this.activityData.filter(entry => entry.date === date)
   }
-
-  // getEntriesSubset(key, value) {
-  //   return thisActivityData.filter(entry => entry[key] === value)
-  // }
-
-  // editDecimals(number, decimal) {
-  //   return parseFloat(number).toFixed(decimal)
-  // }
 
   calculateMilesWalked(user, date) {
     const activityEntry = this.getActivityEntry(user, date)
@@ -56,11 +48,6 @@ class ActivityRepo {
 
   findIfStepGoalMet(user, date) {
     const activityEntry = this.getActivityEntry(user, date)
-    // if (user.dailyStepGoal <= activityEntry.numSteps) {
-    //   return true
-    // } else {
-    //   return false
-    // }
     return user.dailyStepGoal <= activityEntry.numSteps ? true : false
   }
 

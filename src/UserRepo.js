@@ -2,11 +2,13 @@ class UserRepo {
   constructor(users) {
     this.users = users;
   }
+  
   searchUsersByID(idNum) {
     return this.users.find(user => {
       return user.id === idNum
     })
   }
+
   calculateAverageStepGoals() {
     const totalOfStepGoals = this.users.reduce((average, user) => {
       average += user.dailyStepGoal
@@ -16,11 +18,6 @@ class UserRepo {
     return averageStepGoal
   }
 }
-
-
-
-
-
 
 
 if (typeof module !== 'undefined') {
