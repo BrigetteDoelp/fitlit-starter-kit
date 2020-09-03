@@ -137,14 +137,18 @@ function displaySleepData() {
 
   hoursTodayData.innerText = `Hours Slept Today: ${sleepRepo.findNightlyHoursSlept(user.id, '2019/09/21')}`;
   qualityTodayData.innerText = `Sleep Quality Today: ${sleepRepo.findNightlySleepQuality(user.id, '2019/09/21')}`;
+
   hoursSleptWeekly.forEach(night => {
-    hoursWeekData.innerText += ` ${night.hoursSlept}`
+    hoursWeekData.innerHTML += `<p>${night.hoursSlept}</p>`
   })
   hoursSleptWeekly.forEach(night => {
-    qualityWeekData.innerText += ` ${night.sleepQuality} `
+    qualityWeekData.innerHTML += `<p>${night.sleepQuality}</p>`
   })
-  allTimeSleepData.innerText += `Average Hours Slept: ${sleepRepo.calculateAvgHrsSlept(user.id)}`;
-  allTimeSleepData.innerText += `Average Sleep Quality: ${sleepRepo.findAvgTotalSleepQuality(user.id)}`
+  allTimeSleepData.innerHTML += `
+    <h4>Average Hours Slept:</h4>
+    <p>${sleepRepo.calculateAvgHrsSlept(user.id)}</p>
+    <h4>Average Sleep Quality:</h4>
+    <p>${sleepRepo.findAvgTotalSleepQuality(user.id)}</p>`
 }
 
 function updateDisplay() {
