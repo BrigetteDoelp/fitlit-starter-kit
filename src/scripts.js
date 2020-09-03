@@ -3,20 +3,18 @@ const userRepo = new UserRepo(userData)
 const hydrationRepo = new HydrationRepo(hydrationData)
 const activityRepo = new ActivityRepo(activityData)
 const sleepRepo = new SleepRepo(sleepData)
-
 const activityButtons = document.querySelectorAll('.activity-button')
 const stepsWeekData = document.querySelector('.steps-week-data');
 const minutesWeekData = document.querySelector('.minutes-week-data');
 const stairsWeekData = document.querySelector('.stairs-week-data');
-
 const sleepButtons = document.querySelectorAll('.sleep-button');
 const hoursWeekData = document.querySelector('.hours-week-data');
 const qualityWeekData = document.querySelector('.quality-week-data');
 const allTimeSleepData = document.querySelector('.all-time-sleep-data');
 
 window.addEventListener('load', updateDisplay);
-activityButtons.forEach(button => button.addEventListener('click', toggleActivityStats))
-sleepButtons.forEach(button => button.addEventListener('click', toggleSleepStats))
+activityButtons.forEach(button => button.addEventListener('click', toggleActivityStats));
+sleepButtons.forEach(button => button.addEventListener('click', toggleSleepStats));
 
 function toggleSleepStats(event) {
   switch (event.target.id) {
@@ -61,15 +59,11 @@ function toggleActivityStats(event) {
   }
 }
 
-//spike - exploratory dvlpmt process
-// spike branch to see where it goes
-
 function displayUserData() {
   const friendList = user.friends.map(friend => {
   const info = userRepo.searchUsersByID(friend)
     return info.name
   })
-
   const greeting = document.querySelector('.greeting');
   const userName = document.querySelector('.user-name');
   const userAddress = document.querySelector('.user-address');
@@ -77,8 +71,6 @@ function displayUserData() {
   const userDailyStepGoal = document.querySelector('.user-daily-step-goal');
   const userFriends = document.querySelector('.user-friends');
   const stepData = document.querySelector('.step-data');
-
-  //can you loop thru these too?
   greeting.innerText = `Welcome ${user.getFirstName()}!`
   userName.innerText = user.name
   userAddress.innerText = user.address
@@ -96,8 +88,8 @@ function displayHydrationData() {
 
   hydrationTodayData.innerText = `Ounces Drank Today: ${hydrationRepo.findDailyHydration(user.id, '2019/09/21')}`;
   weeklyData.forEach((data) => {
-    hydrationWeekData.innerHTML += `<p>${data.numOunces} ounces</p>`
-    dateDisplay.innerHTML += `<p>${data.date}</p>`
+    hydrationWeekData.innerHTML += `<p class="weekdata">${data.numOunces} ounces</p>`
+    dateDisplay.innerHTML += `<p class="weekdata">${data.date}</p>`
   })
 }
 
@@ -108,21 +100,19 @@ function displayActivityData() {
   const stepsComparisonData = document.querySelector('.steps-comparison-data');
   const minutesComparisonData = document.querySelector('.minutes-comparison-data');
   const stairsComparisonData = document.querySelector('.stairs-comparison-data');
-
-  const weekActive = activityRepo.getWeekOfData(user, '2019/09/21')
-
+  const weekActive = activityRepo.getWeekOfData(user, '2019/09/21');
   stepsTodayData.innerText += `Steps Today: ${activityRepo.getActivityEntry(user, '2019/09/21').numSteps}`
   minutesTodayData.innerText += `Minutes Today: ${activityRepo.findMinutesActive(user, '2019/09/21')}`
   milesTodayData.innerText += `Miles Today: ${activityRepo.calculateMilesWalked(user, '2019/09/21')}`
 
   weekActive.forEach(entry => {
-    minutesWeekData.innerHTML += `<p>${entry.minutesActive}</p>`
+    minutesWeekData.innerHTML += `<p class="weekdata">${entry.minutesActive}</p>`
   })
   weekActive.forEach(entry => {
-    stepsWeekData.innerHTML += `<p>${entry.numSteps}</p> `
+    stepsWeekData.innerHTML += `<p class="weekdata">${entry.numSteps}</p> `
   })
   weekActive.forEach(entry => {
-    stairsWeekData.innerHTML += `<p>${entry.flightsOfStairs}</p>`
+    stairsWeekData.innerHTML += `<p class="weekdata">${entry.flightsOfStairs}</p>`
   })
 
   stepsComparisonData.innerText = `Average Steps Taken ${activityRepo.calculateAllUsersAverage('2019/09/21', 'numSteps')}`
@@ -139,27 +129,27 @@ function displaySleepData() {
   qualityTodayData.innerText = `Sleep Quality Today: ${sleepRepo.findNightlySleepQuality(user.id, '2019/09/21')}`;
 
   hoursSleptWeekly.forEach(night => {
-    hoursWeekData.innerHTML += `<p>${night.hoursSlept}</p>`
+    hoursWeekData.innerHTML += `<p class="weekdata">${night.hoursSlept}</p>`
   })
   hoursSleptWeekly.forEach(night => {
-    qualityWeekData.innerHTML += `<p>${night.sleepQuality}</p>`
+    qualityWeekData.innerHTML += `<p class="weekdata">${night.sleepQuality}</p>`
   })
   allTimeSleepData.innerHTML += `
-    <h4>Average Hours Slept:</h4>
-    <p>${sleepRepo.calculateAvgHrsSlept(user.id)}</p>
-    <h4>Average Sleep Quality:</h4>
-    <p>${sleepRepo.findAvgTotalSleepQuality(user.id)}</p>`
+    <h4 class="weekdata">Average Hours Slept:</h4>
+    <p class="weekdata">${sleepRepo.calculateAvgHrsSlept(user.id)}</p>
+    <h4 class="weekdata">Average Sleep Quality:</h4>
+    <p class="weekdata">${sleepRepo.findAvgTotalSleepQuality(user.id)}</p>`
 }
 
 function displayLeaderBoardData() {
   const leaderboard = document.querySelector('.leaderboard');
   leaderboard.innerHTML += `
   <h4 class="most-steps category">Most Steps Taken</h4>
-  <p>${activityRepo.getUserWithMostSteps('2019/09/21', userData)}
+  <p class="weekdata">${activityRepo.getUserWithMostSteps('2019/09/21', userData)}
   <h4 class="most-drank category">Most Water Drank</h4>
-  <p>${hydrationRepo.getMostHydratedUser('2019/09/21', userData)}
+  <p class="weekdata">${hydrationRepo.getMostHydratedUser('2019/09/21', userData)}
   <h4 class="best-sleep category">Best Sleep</h4>
-  <p>${sleepRepo.getBestSleptUser('2019/09/21', userData)}</p>
+  <p class="weekdata">${sleepRepo.getBestSleptUser('2019/09/21', userData)}</p>
   `
 }
 
