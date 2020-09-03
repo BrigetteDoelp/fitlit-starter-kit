@@ -2,7 +2,11 @@
 
 **Cat-tivity Tracker** is the purrrfect app to keep track of your health habits. It tracks daily, weekly, and all-time stats for how hydrated, active, and well-rested users are. It is designed in vanilla JavaScript using principles of Test Driven Development.
 
-![Cat-tivity app main view](https://i.imgur.com/2JMHSRR.png)
+
+![Cat-tivity App - full page view](https://i.imgur.com/QOSPuv5.png)
+![Cat-ivity App Functionality - drop down profile](https://i.imgur.com/foiS8kE.gif)
+![Cat-tivity App Functionality - toggling through weekly views](https://i.imgur.com/mlXjDHN.gif)
+
 
 ## Setup & Installation
 
