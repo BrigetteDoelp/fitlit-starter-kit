@@ -151,9 +151,22 @@ function displaySleepData() {
     <p>${sleepRepo.findAvgTotalSleepQuality(user.id)}</p>`
 }
 
+function displayLeaderBoardData() {
+  const leaderboard = document.querySelector('.leaderboard');
+  leaderboard.innerHTML += `
+  <h4 class="most-steps category">Most Steps Taken</h4>
+  <p>${activityRepo.getUserWithMostSteps('2019/09/21', userData)}
+  <h4 class="most-drank category">Most Water Drank</h4>
+  <p>${hydrationRepo.getMostHydratedUser('2019/09/21', userData)}
+  <h4 class="best-sleep category">Best Sleep</h4>
+  <p>${sleepRepo.getBestSleptUser('2019/09/21', userData)}</p>
+  `
+}
+
 function updateDisplay() {
   displayUserData()
   displayHydrationData()
   displayActivityData()
   displaySleepData()
+  displayLeaderBoardData()
 }
