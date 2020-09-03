@@ -34,9 +34,9 @@ Each repository class is instantiated with a single dataset to perform most calc
 
 ## Contributors
 
-1. 👤 **Brigette Doelp**
+* 👤 **Brigette Doelp**
 - GitHub: [BrigetteDoelp](https://github.com/brigettedoelp)
-1. 👤 **Hanna Kim**
+* 👤 **Hanna Kim**
 - GitHub: [hannakim91](https://github.com/hannakim91)
 
 ## Additional Links
