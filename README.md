@@ -1,82 +1,45 @@
-# FitLit Starter Kit
+# Cat-tivity Tracker
 
-The details of this project are outline in [this project spec](http://frontend.turing.io/projects/fitlit.html).
+**Cat-tivity Tracker** is the purrrfect app to keep track of your health habits. It tracks daily, weekly, and all-time stats for how hydrated, active, and well-rested users are. It is designed in vanilla JavaScript using principles of Test Driven Development.
+//screenshot of full page
+//gif of button functionality
+![Cat-tivity app functionality - toggling through weekly views](giphy link)
 
-## Setup
+## Setup & Installation
 
-1. Within your group, decide on one person to have the project repository (repo) on their GitHub account. Then, that person should fork this repo - on the top right corner of this page, click the **Fork** button.
-1. Both memebers of the group should clone down the _forked_ repo. Since you don't want to name your project "activity-tracker-starter", you can use an optional argument when you run git clone (you replace the [...] with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
-1. Run `open src/index.html` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page)
-1. Make sure both members of your team are collaborators on the forked repo.
-
-## Testing
-
-There is no boilerplate for testing in this starter-kit repo. You will need to set this up yourself. However, if you ran `npm install`, then the tooling you need to start testing is already installed (`mocha` and `chai`).
-
-## Linting Your Code
-
-Run the command in your terminal `npm run lint` to run the linter on your JavaScript code. There will be errors and warnings right from the start in this starter kit, but that's ok - the linter is still running successfully.
-
-Your linter will look only at the JavaScript files you have within the `src` and the `test` directories.
-
-## Data Model
-
-**Users**
+1. [Clone](git@github.com:BrigetteDoelp/fitlit-starter-kit.git) the repo
+1. Change into the directory and install the project dependencies. 
+1. Open the HTML page locally
 
 ```
-[
-  {
-    "id": [number],
-    "name": [string],
-    "address": [string],
-    "email": [string],
-    "strideLength": [number - feet],
-    "dailyStepGoal": [number - steps],
-    "friends": [array - one-way connection to other user(s)]
-  },
-  ...more user data
-]
+git clone git@github.com:BrigetteDoelp/fitlit-starter-kit.git
+cd [directory]
+npm i
+open src/index.html
 ```
 
-**Activity**
+## Wins & Challenges
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numSteps": [number - steps],
-    "minutesActive": [number - minutes],
-    "flightsOfStairs": [number - flights]
-  },
-  ...more activity data
-]
-```
+* Naming class methods that perform similar actions but across different periods of time, and trying to keep them succinct yet descriptive.
+* Organizing classes and their responsibilities in a sensible way. (More on this below)
+* Breaking down complex logic for certain calculations. It helped to pseudo-code as granularly as possible and break down different steps into helper functions. Helper functions came in handy for writing methods that needed the same piece of information later on, as well as helped keep code DRYer and make it easier for other developers to understand.
 
-**Hydration**
+### Under the Hood
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "numOunces": [number - ounces]
-  },
-  ...more hydration data
-]
-```
+**Organizing Classes:**
+We felt it made sense to organize functionality for this project into 5 classes: a `User`, and 4 different repositories that each hold different datasets (`UserRepo`, `ActivityRepo`, `HydrationRepo`, `SleepRepo`).
 
-**Sleep**
+Our thinking was that different users can be instantiated depending whose info you want to display on the DOM and data can be found or calculated depending what category of information you are looking for.
 
-```
-[
-  {
-    "userID": [number],
-    "date": [string YYYY/MM/DD],
-    "hoursSlept": [number - hours],
-    "sleepQuality": [number - unitless]
-  },
-  ...more sleep data
-]
-```
+Each repository class is instantiated with a single dataset to perform most calculations. This reduces occurences of coupling as much as possible without creating one super class. For a few calculations in `SleepRepo`, `ActivityRepo` and `HydrationRepo` that compare data for multiple users, an array of users is taken in as an argument.
+
+## Contributors
+👤 **Brigette Doelp**
+- GitHub: [BrigetteDoelp](https://github.com/brigettedoelp)
+👤 **Hanna Kim**
+- GitHub: [hannakim91](https://github.com/hannakim91)
+
+## Additional Links
+- [Project Board](https://github.com/BrigetteDoelp/fitlit-starter-kit/projects/1)
+- [Wireframe](https://brigette636123.invisionapp.com/freehand/FitLit-Wireframe-r1Vd07KKY)
+- [Specs](https://frontend.turing.io/projects/fitlit.html)
